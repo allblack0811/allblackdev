@@ -20,8 +20,10 @@ export default defineNuxtConfig({
   ],
   ssr: false,
   devtools: { enabled: true },
+  // css: ["~/assets/css/main.css"],
   alias: {
     "@": resolvePath(__dirname),
+    "#": resolvePath(__dirname, "features"),
   },
   compatibilityDate: "2024-04-03",
   nitro: {
@@ -36,6 +38,10 @@ export default defineNuxtConfig({
     },
     checker: true,
   },
-  fonts: {
+  fonts: {},
+  tailwindcss: {
+    config: {
+      content: ["./features/**/*.vue"],
+    },
   },
 });

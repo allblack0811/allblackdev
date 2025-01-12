@@ -3,5 +3,10 @@
     "source.organizeImports",
     "source.fixAll.eslint"
   ],
-  "editor.formatOnSave": true,
+  "material-icon-theme.folders.associations": {
+    "auto-components": "vue",
+    "auto": "vue-directives",
+    "features": "src"
+  },
+  "editor.formatOnSave": true
 }
