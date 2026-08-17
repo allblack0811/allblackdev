@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import SettingsMenu from "../features/common/SettingsMenu.vue";
-import AboutSection from "../features/home/AboutSection.vue";
-import HeroSection from "../features/home/HeroSection.vue";
-import SiteFooter from "../features/home/SiteFooter.vue";
-import WorksSection from "../features/home/WorksSection.vue";
+import AboutSection from "#/home/AboutSection.vue";
+import HeroSection from "#/home/HeroSection.vue";
+import SiteFooter from "#/home/SiteFooter.vue";
+import WorksSection from "#/home/WorksSection.vue";
 
 const { t } = useI18n();
 
@@ -31,9 +30,6 @@ useHead({
 
 <template>
   <div>
-    <div class="fixed right-5 top-5 z-50">
-      <SettingsMenu />
-    </div>
     <main>
       <HeroSection />
       <AboutSection />

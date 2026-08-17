@@ -1,8 +1,17 @@
 <script setup lang="ts">
+import { useDark, useToggle } from "@vueuse/core";
 import { motion } from "motion-v";
 
-const { t } = useI18n();
+const { t, locale, setLocale } = useI18n();
 const email = "yum969315@gmail.com";
+
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
+
+const locales = [
+  { code: "ko", short: "KO" },
+  { code: "en", short: "EN" },
+] as const;
 </script>
 
 <template>
@@ -32,6 +41,48 @@ const email = "yum969315@gmail.com";
         <Icon name="ph:envelope-simple-bold" />
         {{ email }}
       </motion.a>
+
+      <div class="mt-8 flex items-center justify-center gap-4">
+        <motion.button
+          type="button"
+          :aria-label="isDark ? t('settings.dark') : t('settings.light')"
+          class="flex h-9 w-9 items-center justify-center rounded-full border"
+          :style="{ borderColor: 'var(--border)', color: 'var(--text)' }"
+          :while-hover="{ scale: 1.1 }"
+          :while-tap="{ scale: 0.9 }"
+          @click="() => toggleDark()"
+        >
+          <Icon
+            :name="isDark ? 'ph:moon-stars-bold' : 'ph:sun-bold'"
+            class="text-lg"
+          />
+        </motion.button>
+
+        <div
+          class="h-5 w-px"
+          :style="{ backgroundColor: 'var(--border)' }"
+        />
+
+        <div class="flex items-center gap-1">
+          <button
+            v-for="item in locales"
+            :key="item.code"
+            type="button"
+            :aria-pressed="locale === item.code"
+            class="rounded-full px-3 py-1.5 text-xs font-semibold"
+            :style="{
+              color:
+                locale === item.code ? 'var(--accent)' : 'var(--text-muted)',
+              backgroundColor:
+                locale === item.code ? 'var(--accent-soft)' : 'transparent',
+            }"
+            @click="setLocale(item.code)"
+          >
+            {{ item.short }}
+          </button>
+        </div>
+      </div>
+
       <p
         class="mt-8 text-xs"
         :style="{ color: 'var(--text-muted)' }"

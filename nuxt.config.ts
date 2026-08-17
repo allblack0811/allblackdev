@@ -40,7 +40,6 @@ export default defineNuxtConfig({
       "새롭고 재미있는 것을 만드는 것을 좋아하는 프론트엔드 개발자 allblack의 블로그이자 포트폴리오입니다.",
     defaultLocale: "ko",
   },
-  // css: ["~/assets/css/main.css"],
   alias: {
     "@": resolvePath(__dirname),
     "#": resolvePath(__dirname, "features"),
