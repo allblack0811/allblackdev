@@ -16,6 +16,9 @@ useSeoMeta({
   ogType: "article",
   twitterCard: "summary_large_image",
 });
+
+// works 페이지 전용 타이틀 템플릿
+useHead({ titleTemplate: "%s · allblack" });
 </script>
 
 <template>

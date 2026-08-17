@@ -46,7 +46,10 @@ const works = computed(() => getWorks(locale.value));
             />
           </div>
           <div class="p-6">
-            <h3 class="text-lg font-semibold" :style="{ color: 'var(--text)' }">
+            <h3
+              class="text-lg font-semibold"
+              :style="{ color: 'var(--text)' }"
+            >
               {{ work.title }}
             </h3>
             <p
