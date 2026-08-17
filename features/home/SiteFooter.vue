@@ -7,7 +7,7 @@ const email = "yum969315@gmail.com";
 
 <template>
   <footer
-    class="border-t px-6 py-16 text-center"
+    class="border-t px-6 py-20 text-center"
     :style="{ borderColor: 'var(--border)' }"
   >
     <motion.div

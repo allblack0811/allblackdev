@@ -9,7 +9,7 @@ const titleWords = computed(() => t("hero.title").split(" "));
 
 <template>
   <section
-    class="relative flex min-h-screen flex-col items-center justify-center gap-12 px-6 py-24 md:flex-row md:gap-20"
+    class="relative flex min-h-screen flex-col items-center justify-center gap-14 px-6 py-28 md:flex-row md:gap-24 md:py-32"
   >
     <div class="max-w-xl text-center md:text-left">
       <motion.p
@@ -23,7 +23,7 @@ const titleWords = computed(() => t("hero.title").split(" "));
       </motion.p>
 
       <h1
-        class="flex flex-wrap justify-center gap-x-3 gap-y-1 text-3xl font-bold leading-tight md:justify-start md:text-5xl"
+        class="flex flex-wrap justify-center gap-x-3 gap-y-1 text-3xl font-bold leading-tight tracking-tight md:justify-start md:text-6xl"
         :style="{ color: 'var(--text)' }"
       >
         <motion.span
@@ -38,7 +38,7 @@ const titleWords = computed(() => t("hero.title").split(" "));
       </h1>
 
       <motion.p
-        class="mt-6 text-base md:text-lg"
+        class="mt-8 max-w-md text-base md:text-lg"
         :style="{ color: 'var(--text-muted)' }"
         :initial="{ opacity: 0, y: 20 }"
         :animate="{ opacity: 1, y: 0 }"
@@ -50,16 +50,15 @@ const titleWords = computed(() => t("hero.title").split(" "));
 
     <motion.div
       class="relative"
-      :initial="{ opacity: 0, scale: 0.8, rotate: -6 }"
-      :animate="{ opacity: 1, scale: 1, rotate: 0 }"
+      :initial="{ opacity: 0, scale: 0.8, rotate: -8 }"
+      :animate="{ opacity: 1, scale: 1, rotate: -3 }"
       :transition="{ type: 'spring', stiffness: 120, damping: 14, delay: 0.4 }"
-      :while-hover="{ rotate: 3, scale: 1.03 }"
+      :while-hover="{ rotate: 0, scale: 1.05 }"
     >
       <NuxtImg
         src="/profile.jpg"
         :alt="t('hero.imageAlt')"
-        class="h-72 w-60 rounded-3xl object-cover shadow-2xl md:h-96 md:w-80"
-        :style="{ borderColor: 'var(--border)' }"
+        class="h-72 w-60 rounded-2xl border-[10px] border-white object-cover shadow-2xl md:h-96 md:w-80"
       />
     </motion.div>
   </section>

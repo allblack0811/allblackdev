@@ -9,10 +9,10 @@ const keywords = computed(() => tm("about.keywords") as string[]);
 
 <template>
   <section
-    class="mx-auto flex min-h-[100dvh] max-w-3xl flex-col justify-center px-6 py-24"
+    class="mx-auto flex min-h-[100dvh] max-w-3xl flex-col justify-center px-6 py-28 md:py-32"
   >
     <motion.h2
-      class="mb-10 text-2xl font-bold md:text-3xl"
+      class="mb-14 text-3xl font-bold tracking-tight md:text-4xl"
       :style="{ color: 'var(--text)' }"
       :initial="{ opacity: 0, x: -40 }"
       :while-in-view="{ opacity: 1, x: 0 }"
@@ -22,7 +22,7 @@ const keywords = computed(() => tm("about.keywords") as string[]);
       {{ t("about.heading") }}
     </motion.h2>
 
-    <div class="space-y-6">
+    <div class="space-y-7">
       <motion.p
         v-for="(text, index) in paragraphs"
         :key="index"
@@ -37,7 +37,7 @@ const keywords = computed(() => tm("about.keywords") as string[]);
       </motion.p>
     </div>
 
-    <div class="mt-10 flex flex-wrap gap-3">
+    <div class="mt-12 flex flex-wrap gap-3">
       <motion.span
         v-for="(keyword, index) in keywords"
         :key="index"

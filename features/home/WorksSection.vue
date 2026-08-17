@@ -7,9 +7,9 @@ const localePath = useLocalePath();
 </script>
 
 <template>
-  <section class="mx-auto max-w-5xl px-6 py-24">
+  <section class="mx-auto max-w-5xl px-6 py-28 md:py-32">
     <motion.h2
-      class="mb-12 text-2xl font-bold md:text-3xl"
+      class="mb-16 text-3xl font-bold tracking-tight md:text-4xl"
       :style="{ color: 'var(--text)' }"
       :initial="{ opacity: 0, x: -40 }"
       :while-in-view="{ opacity: 1, x: 0 }"
@@ -19,7 +19,7 @@ const localePath = useLocalePath();
       {{ t("works.heading") }}
     </motion.h2>
 
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       <motion.div
         v-for="(work, index) in works"
         :key="work.id"
@@ -44,7 +44,7 @@ const localePath = useLocalePath();
               class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
-          <div class="p-5">
+          <div class="p-6">
             <h3
               class="text-lg font-semibold"
               :style="{ color: 'var(--text)' }"
