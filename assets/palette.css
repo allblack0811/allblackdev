@@ -220,3 +220,31 @@
   --color-rose-900: #881337;
   --color-rose-950: #4c0519;
 }
+
+/*
+ semantic theme tokens
+ .dark 클래스 유무에 따라 라이트/다크 값이 전환됩니다.
+*/
+:root {
+  --bg: var(--color-gary-50);
+  --bg-elevated: #ffffff;
+  --bg-subtle: var(--color-gary-100);
+  --text: var(--color-gary-900);
+  --text-muted: var(--color-gary-500);
+  --border: var(--color-gary-200);
+  --accent: var(--color-indigo-600);
+  --accent-hover: var(--color-indigo-700);
+  --accent-soft: var(--color-indigo-100);
+}
+
+.dark {
+  --bg: var(--color-gary-950);
+  --bg-elevated: var(--color-gary-900);
+  --bg-subtle: var(--color-gary-800);
+  --text: var(--color-gary-50);
+  --text-muted: var(--color-gary-400);
+  --border: var(--color-gary-800);
+  --accent: var(--color-indigo-400);
+  --accent-hover: var(--color-indigo-300);
+  --accent-soft: var(--color-gary-800);
+}

@@ -13,13 +13,33 @@ export default defineNuxtConfig({
   modules: [
     "@nuxt/eslint",
     "@nuxt/icon",
+    "@nuxt/image",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/seo",
+    "@nuxtjs/i18n",
     "@vueuse/nuxt",
     "@nuxt/fonts",
   ],
   ssr: false,
   devtools: { enabled: true },
+  app: {
+    head: {
+      titleTemplate: "%s · allblack",
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+      ],
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    },
+  },
+  // @nuxtjs/seo 사이트 전역 설정
+  site: {
+    url: "https://allblack.dev",
+    name: "allblack's blog",
+    description:
+      "새롭고 재미있는 것을 만드는 것을 좋아하는 프론트엔드 개발자 allblack의 블로그이자 포트폴리오입니다.",
+    defaultLocale: "ko",
+  },
   // css: ["~/assets/css/main.css"],
   alias: {
     "@": resolvePath(__dirname),
@@ -39,8 +59,27 @@ export default defineNuxtConfig({
     checker: true,
   },
   fonts: {},
+  i18n: {
+    strategy: "prefix_except_default",
+    defaultLocale: "ko",
+    locales: [
+      { code: "ko", language: "ko-KR", name: "한국어", file: "ko.json" },
+      { code: "en", language: "en-US", name: "English", file: "en.json" },
+    ],
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_locale",
+      redirectOn: "root",
+    },
+  },
+  image: {
+    domains: ["picsum.photos", "fastly.picsum.photos"],
+  },
+  // SPA(ssr:false)에서는 OG 이미지 생성을 사용하지 않습니다.
+  ogImage: { enabled: false },
   tailwindcss: {
     config: {
+      darkMode: "class",
       content: ["./features/**/*.vue"],
     },
   },

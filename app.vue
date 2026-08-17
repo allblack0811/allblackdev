@@ -11,12 +11,18 @@
 
 html,
 body {
-  background-color: var(--color-gray-050);
-  font-family: Noto Sans KR, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family:
+    Noto Sans KR,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   height: 100%;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
 }
 
 #__nuxt {

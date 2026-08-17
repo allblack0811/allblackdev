@@ -16,11 +16,16 @@
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/icon": "^2.5.0",
     "@nuxt/image": "^2.1.0",
+    "@nuxtjs/i18n": "^10.6.0",
     "@nuxtjs/seo": "^5.3.12",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@vueuse/core": "^14.4.0",
     "@vueuse/nuxt": "^14.4.0",
+    "motion-v": "^1.7.2",
     "nuxt": "^4.5.2",
     "vue": "^3.5.41"
+  },
+  "dependencies": {
+    "nuxt-og-image": "^6.7.8"
   }
 }
