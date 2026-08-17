@@ -72,9 +72,6 @@ export default defineNuxtConfig({
       redirectOn: "root",
     },
   },
-  image: {
-    domains: ["picsum.photos", "fastly.picsum.photos"],
-  },
   // SPA(ssr:false)에서는 OG 이미지 생성을 사용하지 않습니다.
   ogImage: { enabled: false },
   tailwindcss: {

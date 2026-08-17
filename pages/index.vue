@@ -24,8 +24,6 @@ useSeoMeta({
   twitterDescription: () => t("seo.description"),
   twitterImage: "/profile.jpg",
 });
-
-// keywords는 useSeoMeta가 지원하지 않아 useHead로 설정합니다.
 useHead({
   meta: [{ name: "keywords", content: () => t("seo.keywords") }],
 });
@@ -44,5 +42,3 @@ useHead({
     <SiteFooter />
   </div>
 </template>
-
-<style lang="scss" scoped></style>

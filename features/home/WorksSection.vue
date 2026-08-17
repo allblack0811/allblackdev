@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { works } from "#/home/works";
+import { getWorks } from "#/work";
 import { motion } from "motion-v";
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const localePath = useLocalePath();
+const works = computed(() => getWorks(locale.value));
 </script>
 
 <template>
@@ -19,8 +20,8 @@ const localePath = useLocalePath();
       {{ t("works.heading") }}
     </motion.h2>
 
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      <motion.div
+    <ul class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <motion.li
         v-for="(work, index) in works"
         :key="work.id"
         :initial="{ opacity: 0, y: 40 }"
@@ -40,25 +41,22 @@ const localePath = useLocalePath();
           <div class="aspect-[4/3] overflow-hidden">
             <NuxtImg
               :src="work.thumbnail"
-              :alt="t(`work.${work.id}.title`)"
+              :alt="work.title"
               class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
           <div class="p-6">
-            <h3
-              class="text-lg font-semibold"
-              :style="{ color: 'var(--text)' }"
-            >
-              {{ t(`work.${work.id}.title`) }}
+            <h3 class="text-lg font-semibold" :style="{ color: 'var(--text)' }">
+              {{ work.title }}
             </h3>
             <p
               class="mt-2 text-sm leading-relaxed"
               :style="{ color: 'var(--text-muted)' }"
             >
-              {{ t(`work.${work.id}.summary`) }}
+              {{ work.summary }}
             </p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li
                 v-for="tag in work.tags"
                 :key="tag"
                 class="rounded-md px-2 py-1 text-xs font-medium"
@@ -68,11 +66,11 @@ const localePath = useLocalePath();
                 }"
               >
                 {{ tag }}
-              </span>
-            </div>
+              </li>
+            </ul>
           </div>
         </NuxtLink>
-      </motion.div>
-    </div>
+      </motion.li>
+    </ul>
   </section>
 </template>

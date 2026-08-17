@@ -40,35 +40,5 @@
   "workDetail": {
     "back": "Back",
     "notFound": "This work does not exist."
-  },
-  "work": {
-    "personal-blog": {
-      "title": "Personal Blog",
-      "summary": "A personal blog and portfolio built from scratch with Nuxt 3.",
-      "role": "Planning · Design · Development",
-      "description": [
-        "A personal space I designed myself to experiment with and document new technologies.",
-        "It supports light/dark mode and a variety of interaction animations.",
-        "It is deployed to GitHub Pages as an SPA."
-      ]
-    },
-    "design-system": {
-      "title": "Design System",
-      "summary": "A component library and token system for consistent UI.",
-      "role": "Frontend Development",
-      "description": [
-        "Designed reusable components that can be shared across multiple projects.",
-        "Managed colors, typography, and spacing as tokens to improve maintainability."
-      ]
-    },
-    "playground": {
-      "title": "Interaction Playground",
-      "summary": "A space to experiment with fun animations and interactions.",
-      "role": "Side Project",
-      "description": [
-        "A place to freely build new and fun interaction ideas.",
-        "Explores physics-based animation using motion.dev."
-      ]
-    }
   }
 }

@@ -18,14 +18,11 @@ const locales = [
 </script>
 
 <template>
-  <div
-    ref="root"
-    class="relative"
-  >
+  <div ref="root" class="relative">
     <motion.button
       type="button"
       :aria-label="t('settings.title')"
-      aria-haspopup="true"
+      aria-haspopup="menu"
       :aria-expanded="open"
       class="flex h-11 w-11 items-center justify-center rounded-full border shadow-sm"
       :style="{
@@ -39,15 +36,15 @@ const locales = [
       :transition="{ type: 'spring', stiffness: 400, damping: 15 }"
       @click="open = !open"
     >
-      <Icon
-        name="ph:gear-six-bold"
-        class="text-xl"
-      />
+      <Icon name="ph:gear-six-bold" class="text-xl" />
     </motion.button>
 
     <AnimatePresence>
       <motion.div
         v-if="open"
+        role="menu"
+        aria-orientation="vertical"
+        :aria-label="t('settings.title')"
         class="absolute right-0 top-14 w-56 overflow-hidden rounded-2xl border p-2 shadow-xl"
         :style="{
           backgroundColor: 'var(--bg-elevated)',
@@ -67,6 +64,8 @@ const locales = [
         </div>
         <motion.button
           type="button"
+          role="menuitemcheckbox"
+          :aria-checked="isDark"
           class="flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-medium"
           :style="{ color: 'var(--text)' }"
           :while-hover="{ backgroundColor: 'var(--bg-subtle)' }"
@@ -95,10 +94,7 @@ const locales = [
           </span>
         </motion.button>
 
-        <div
-          class="my-2 border-t"
-          :style="{ borderColor: 'var(--border)' }"
-        />
+        <div class="my-2 border-t" :style="{ borderColor: 'var(--border)' }" />
 
         <!-- 언어 -->
         <div
@@ -112,6 +108,8 @@ const locales = [
             v-for="item in locales"
             :key="item.code"
             type="button"
+            role="menuitemradio"
+            :aria-checked="locale === item.code"
             class="flex w-full items-center justify-between rounded-xl px-3 py-2 text-sm font-medium"
             :style="{
               color: locale === item.code ? 'var(--accent)' : 'var(--text)',

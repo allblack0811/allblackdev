@@ -1,23 +1,17 @@
 <script setup lang="ts">
-import { findWork } from "#/home/works";
+import { findWork } from "#/work";
 import { motion } from "motion-v";
 
-const { t, tm, rt } = useI18n();
+const { t, locale } = useI18n();
 const localePath = useLocalePath();
 const route = useRoute();
-const work = computed(() => findWork(String(route.params.id)));
-const descriptions = computed(() =>
-  work.value ? (tm(`work.${work.value.id}.description`) as string[]) : [],
-);
+const work = computed(() => findWork(String(route.params.id), locale.value));
 
 useSeoMeta({
-  title: () =>
-    work.value ? t(`work.${work.value.id}.title`) : t("workDetail.notFound"),
-  description: () =>
-    work.value ? t(`work.${work.value.id}.summary`) : t("workDetail.notFound"),
-  ogTitle: () =>
-    work.value ? t(`work.${work.value.id}.title`) : t("works.heading"),
-  ogDescription: () => (work.value ? t(`work.${work.value.id}.summary`) : ""),
+  title: () => work.value?.title ?? t("workDetail.notFound"),
+  description: () => work.value?.summary ?? t("workDetail.notFound"),
+  ogTitle: () => work.value?.title ?? t("works.heading"),
+  ogDescription: () => work.value?.summary ?? "",
   ogImage: () => work.value?.thumbnail ?? "",
   ogType: "article",
   twitterCard: "summary_large_image",
@@ -25,7 +19,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="mx-auto max-w-3xl px-6 py-24">
+  <main class="mx-auto max-w-3xl px-6 py-24">
     <NuxtLink
       :to="localePath('/')"
       class="mb-10 inline-flex items-center gap-1 text-sm font-medium"
@@ -36,70 +30,64 @@ useSeoMeta({
     </NuxtLink>
 
     <template v-if="work">
-      <motion.div
+      <motion.article
         :initial="{ opacity: 0, y: 30 }"
         :animate="{ opacity: 1, y: 0 }"
         :transition="{ duration: 0.6 }"
       >
-        <div
-          class="mb-6 overflow-hidden rounded-3xl border shadow-lg"
-          :style="{ borderColor: 'var(--border)' }"
-        >
-          <NuxtImg
-            :src="work.thumbnail"
-            :alt="t(`work.${work.id}.title`)"
-            class="h-64 w-full object-cover md:h-80"
-          />
-        </div>
-
-        <h1
-          class="text-3xl font-bold md:text-4xl"
-          :style="{ color: 'var(--text)' }"
-        >
-          {{ t(`work.${work.id}.title`) }}
-        </h1>
-
-        <div
-          class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm"
-          :style="{ color: 'var(--text-muted)' }"
-        >
-          <span>{{ work.year }}</span>
-          <span>·</span>
-          <span>{{ t(`work.${work.id}.role`) }}</span>
-        </div>
-
-        <div class="mt-5 flex flex-wrap gap-2">
-          <span
-            v-for="tag in work.tags"
-            :key="tag"
-            class="rounded-md px-2 py-1 text-xs font-medium"
-            :style="{
-              backgroundColor: 'var(--accent-soft)',
-              color: 'var(--accent)',
-            }"
+        <header>
+          <div
+            class="mb-6 overflow-hidden rounded-3xl border shadow-lg"
+            :style="{ borderColor: 'var(--border)' }"
           >
-            {{ tag }}
-          </span>
-        </div>
+            <NuxtImg
+              :src="work.thumbnail"
+              :alt="work.title"
+              class="h-64 w-full object-cover md:h-80"
+            />
+          </div>
 
-        <div class="mt-10 space-y-5">
-          <motion.p
-            v-for="(text, index) in descriptions"
-            :key="index"
-            class="text-base leading-normal md:text-lg"
+          <h1
+            class="text-3xl font-bold md:text-4xl"
+            :style="{ color: 'var(--text)' }"
+          >
+            {{ work.title }}
+          </h1>
+
+          <div
+            class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm"
             :style="{ color: 'var(--text-muted)' }"
-            :initial="{ opacity: 0, y: 20 }"
-            :animate="{ opacity: 1, y: 0 }"
-            :transition="{ duration: 0.5, delay: 0.2 + index * 0.15 }"
           >
-            {{ rt(text) }}
-          </motion.p>
-        </div>
+            <span>{{ work.year }}</span>
+            <span aria-hidden="true">·</span>
+            <span>{{ work.role }}</span>
+          </div>
 
+          <ul class="mt-5 flex flex-wrap gap-2">
+            <li
+              v-for="tag in work.tags"
+              :key="tag"
+              class="rounded-md px-2 py-1 text-xs font-medium"
+              :style="{
+                backgroundColor: 'var(--accent-soft)',
+                color: 'var(--accent)',
+              }"
+            >
+              {{ tag }}
+            </li>
+          </ul>
+        </header>
+
+        <!-- 작성자가 직접 관리하는 신뢰된 마크다운 본문 -->
+        <!-- eslint-disable vue/no-v-html -->
         <div
-          v-if="work.links?.length"
-          class="mt-10 flex flex-wrap gap-3"
-        >
+          class="work-body mt-10"
+          :style="{ color: 'var(--text-muted)' }"
+          v-html="work.bodyHtml"
+        />
+        <!-- eslint-enable vue/no-v-html -->
+
+        <div v-if="work.links?.length" class="mt-10 flex flex-wrap gap-3">
           <motion.a
             v-for="link in work.links"
             :key="link.url"
@@ -115,7 +103,7 @@ useSeoMeta({
             {{ link.label }}
           </motion.a>
         </div>
-      </motion.div>
+      </motion.article>
     </template>
 
     <template v-else>
@@ -123,5 +111,60 @@ useSeoMeta({
         {{ t("workDetail.notFound") }}
       </p>
     </template>
-  </div>
+  </main>
 </template>
+
+<style scoped>
+.work-body :deep(h2) {
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.work-body :deep(h3) {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.work-body :deep(p) {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.work-body :deep(ul),
+.work-body :deep(ol) {
+  margin: 1rem 0;
+  padding-left: 1.25rem;
+  list-style: revert;
+}
+
+.work-body :deep(li) {
+  margin-bottom: 0.35rem;
+  line-height: 1.7;
+}
+
+.work-body :deep(a) {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.work-body :deep(code) {
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.35rem;
+  background-color: var(--bg-subtle);
+  font-size: 0.9em;
+}
+
+.work-body :deep(pre) {
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background-color: var(--bg-subtle);
+  overflow-x: auto;
+}
+</style>

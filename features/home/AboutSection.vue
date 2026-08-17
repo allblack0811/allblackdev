@@ -37,8 +37,8 @@ const keywords = computed(() => tm("about.keywords") as string[]);
       </motion.p>
     </div>
 
-    <div class="mt-12 flex flex-wrap gap-3">
-      <motion.span
+    <ul class="mt-12 flex flex-wrap gap-3">
+      <motion.li
         v-for="(keyword, index) in keywords"
         :key="index"
         class="rounded-full px-4 py-2 text-sm font-medium"
@@ -58,7 +58,7 @@ const keywords = computed(() => tm("about.keywords") as string[]);
         :while-hover="{ scale: 1.08, y: -3 }"
       >
         {{ rt(keyword) }}
-      </motion.span>
-    </div>
+      </motion.li>
+    </ul>
   </section>
 </template>
