@@ -57,6 +57,10 @@ export default defineNuxtConfig({
     checker: true,
   },
   fonts: {},
+  // GitHub Pages는 정적 호스팅이라 IPX 이미지 최적화 서버가 없으므로 원본을 그대로 서빙합니다.
+  image: {
+    provider: "none",
+  },
   i18n: {
     strategy: "prefix_except_default",
     defaultLocale: "ko",
