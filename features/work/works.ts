@@ -20,7 +20,7 @@ export const workMetas: WorkMeta[] = [
     order: 1,
     year: "2026",
     tags: ["Nuxt 4", "TypeScript", "Tailwind CSS"],
-    thumbnail: "https://picsum.photos/seed/blog/800/600",
+    thumbnail: "/works/blog.png",
     links: [{ label: "GitHub", url: "https://github.com/allblack0811" }],
   },
 ];

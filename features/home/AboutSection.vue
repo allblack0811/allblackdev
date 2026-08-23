@@ -4,7 +4,6 @@ import { motion } from "motion-v";
 const { t, tm, rt } = useI18n();
 
 const paragraphs = computed(() => tm("about.paragraphs") as string[]);
-const keywords = computed(() => tm("about.keywords") as string[]);
 </script>
 
 <template>
@@ -36,29 +35,5 @@ const keywords = computed(() => tm("about.keywords") as string[]);
         {{ rt(text) }}
       </motion.p>
     </div>
-
-    <ul class="mt-12 flex flex-wrap gap-3">
-      <motion.li
-        v-for="(keyword, index) in keywords"
-        :key="index"
-        class="rounded-full px-4 py-2 text-sm font-medium"
-        :style="{
-          backgroundColor: 'var(--accent-soft)',
-          color: 'var(--accent)',
-        }"
-        :initial="{ opacity: 0, scale: 0.6 }"
-        :while-in-view="{ opacity: 1, scale: 1 }"
-        :in-view-options="{ once: true }"
-        :transition="{
-          type: 'spring',
-          stiffness: 500,
-          damping: 20,
-          delay: index * 0.06,
-        }"
-        :while-hover="{ scale: 1.08, y: -3 }"
-      >
-        {{ rt(keyword) }}
-      </motion.li>
-    </ul>
   </section>
 </template>
