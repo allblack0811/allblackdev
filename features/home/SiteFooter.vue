@@ -33,7 +33,10 @@ const locales = [
         :while-tap="{ scale: 0.96 }"
       >
         <!-- 아이콘이 텍스트보다 시각적으로 높아 보여 1px 아래로 광학 보정 -->
-        <Icon name="ph:envelope-simple-bold" class="relative top-[1px]" />
+        <Icon
+          name="ph:envelope-simple-bold"
+          class="relative top-[1px]"
+        />
         {{ email }}
       </motion.a>
 
@@ -53,7 +56,10 @@ const locales = [
           />
         </motion.button>
 
-        <div class="h-5 w-px" :style="{ backgroundColor: 'var(--border)' }" />
+        <div
+          class="h-5 w-px"
+          :style="{ backgroundColor: 'var(--border)' }"
+        />
 
         <div class="flex items-center gap-1">
           <button
@@ -75,7 +81,10 @@ const locales = [
         </div>
       </div>
 
-      <p class="mt-8 text-xs" :style="{ color: 'var(--text-muted)' }">
+      <p
+        class="mt-8 text-xs"
+        :style="{ color: 'var(--text-muted)' }"
+      >
         {{ t("footer.rights") }}
       </p>
     </motion.div>

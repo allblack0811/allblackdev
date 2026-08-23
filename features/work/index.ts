@@ -96,10 +96,10 @@ function toWork(meta: (typeof workMetas)[number], locale: string): Work {
 export function getWorks(locale: string): Work[] {
   return [...workMetas]
     .sort((a, b) => a.order - b.order)
-    .map((meta) => toWork(meta, locale));
+    .map(meta => toWork(meta, locale));
 }
 
 export function findWork(id: string, locale: string): Work | undefined {
-  const meta = workMetas.find((item) => item.id === id);
+  const meta = workMetas.find(item => item.id === id);
   return meta ? toWork(meta, locale) : undefined;
 }
