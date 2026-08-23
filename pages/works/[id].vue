@@ -90,7 +90,10 @@ useHead({ titleTemplate: "%s · allblack" });
         />
         <!-- eslint-enable vue/no-v-html -->
 
-        <div v-if="work.links?.length" class="mt-10 flex flex-wrap gap-3">
+        <div
+          v-if="work.links?.length"
+          class="mt-10 flex flex-wrap gap-3"
+        >
           <motion.a
             v-for="link in work.links"
             :key="link.url"
