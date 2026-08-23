@@ -8,7 +8,7 @@ const paragraphs = computed(() => tm("about.paragraphs") as string[]);
 
 <template>
   <section
-    class="mx-auto flex min-h-[100dvh] max-w-3xl flex-col justify-center px-6 py-28 md:py-32"
+    class="mx-auto flex min-h-[100dvh] max-w-5xl flex-col justify-center px-12 py-28 md:py-32"
   >
     <motion.h2
       class="mb-14 text-3xl font-bold tracking-tight md:text-4xl"

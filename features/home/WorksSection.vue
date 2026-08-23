@@ -8,7 +8,7 @@ const works = computed(() => getWorks(locale.value));
 </script>
 
 <template>
-  <section class="mx-auto max-w-5xl px-6 py-28 md:py-32">
+  <section class="mx-auto max-w-5xl px-12 py-28 md:py-32">
     <motion.h2
       class="mb-16 text-3xl font-bold tracking-tight md:text-4xl"
       :style="{ color: 'var(--text)' }"
