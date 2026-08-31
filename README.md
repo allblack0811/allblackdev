@@ -90,3 +90,5 @@ npm run dev
 <div align="center">
 <sub>© 2026 allblack. All rights reserved.</sub>
 </div>
+
+<!-- 사용한 파비콘 폰트:  Black Ops One -->
